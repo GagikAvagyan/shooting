@@ -1,0 +1,318 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    overflow: hidden;
+    font-family: Poppins;
+}
+
+.game_content{
+    height: 100vh;
+    background-image: url("../img/bg1.jpg");
+    overflow: hidden;
+    background-size: 110% 110%;
+    display: none;
+}
+
+@keyframes bird1 {
+    0%{
+        margin-left: -100px;
+    }
+
+    100%{
+        margin-left: 2000px;
+        margin-top: 390px;
+    }
+}
+
+@keyframes bird2 {
+    0%{
+       left: 100%;
+        margin-top: 100px;
+    }
+
+    100%{
+        left: -10%;
+        margin-top: 300px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@keyframes bird3 {
+    0%{
+        margin-left: -100px;
+        margin-top: 200px;
+    }
+
+    100%{
+        margin-left: 2000px;
+        margin-top: 700px;
+    }
+}
+
+.birds{
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin-left: -150px;
+    position: absolute;
+}
+
+#first{
+    animation: bird1 7s infinite;
+    animation-delay: 3s;
+}
+
+#second{
+    animation: bird2 6s infinite ;
+    animation-delay: 7s;
+}
+
+#third{
+    animation: bird3 7s infinite ;
+    animation-delay: 14s;
+}
+
+.bomb{
+    animation-play-state: paused;
+}
+
+.bullet_num{
+    position: absolute;
+    top: 15px;
+    left: 90%;
+    width: 130px;
+}
+.bullets{
+    height: 45px;
+    margin-right: 2px;
+}
+.player_hand{
+    position: absolute;
+    left: 45%;
+    bottom: 0;
+    width: 150px;
+}
+
+
+
+
+
+
+
+
+.before_game{
+    height: 100vh;
+    background-image: url("../img/bg1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    transition: .3s;
+    /*display: none;*/
+}
+.before_game:before {
+    content: "";
+    background: #000;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    opacity: 0.4;
+}
+.box1{
+    flex: 1.2;
+    z-index: 999;
+    padding: 30px 0;
+}
+.box1>h2{
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-family: popinse;
+}
+.box1>h3{
+    text-align: center;
+    color: #fff;
+    margin-top: 30px;
+    font-size: 30px;
+    font-family: popinse;
+}
+.change_bg{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.change_bg img {
+    width: 32%;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.change_bg img:hover{
+    animation: pulse;
+    animation-duration: 1s;
+}
+
+.box1>.ChooseVisionTitle{
+    margin-top: 20px;
+}
+.ChooseVision{
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+    background: #b0b0b047;
+}
+.ChooseVision img {
+    width: 15%;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 15px;
+}
+.ChooseVision img:hover{
+    animation: pulse;
+    animation-duration: 1s;
+}
+
+#Level{
+    margin: auto;
+    margin-top: 20px;
+    max-width: 250px;
+    width: 100%;
+    padding: 10px;
+    background: #fff;
+    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    font-size: 16px;
+    background-image: url("../img/arrow.jpg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position-x: 93%;
+    background-position-y: 15px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+}
+.option{
+    display: block;
+    margin: auto;
+    max-width: 250px;
+    width: 100%;
+    padding: 10px;
+    background: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+.option:hover{
+    background: #6a6b6a69;
+    transition: .3s;
+    color: #fff;
+}
+.option:first-of-type{
+    border-radius: 20px 20px 0 0 ;
+    margin-top: 10px;
+}
+.option:last-of-type{
+    border-radius: 0 0 20px 20px;
+}
+
+.box2{
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 999;
+}
+.description{
+    width: 80%;
+    background: #fff;
+    border-radius: 25px;
+    padding: 20px 20px 35px;
+}
+.description>h1{
+    font-size: 35px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+    color: #0a6022b5;
+}
+.description>p{
+    font-size: 16px;
+    text-align: center;
+    margin-top: 30px;
+}
+.StartGame{
+    padding: 14px 70px;
+    margin-top: 30px;
+    border-radius: 25px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+.box3{
+    flex: 1.2;
+    z-index: 999;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+.sign-up{
+    padding: 10px 40px;
+    margin: 30px 30px 0 0;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.sign-up-form{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background: #fff;
+    width: 350px;
+    padding: 80px 30px 30px;
+    border-radius: 25px;
+    display: none;
+}
+
+.form-name , .form-email{
+    padding: 7px 10px;
+    border: 1px solid;
+    border-radius: 25px;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+.close-form {
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.sign-up-button{
+    padding: 10px 45px;
+    border-radius: 25px;
+    margin-top: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    width: fit-content;
+}
