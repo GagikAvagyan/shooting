@@ -16,64 +16,12 @@
     display: none;
 }
 
-@keyframes bird1 {
-    0%{
-        margin-left: -100px;
-    }
-
-    100%{
-        margin-left: 2000px;
-        margin-top: 390px;
-    }
-}
-
-@keyframes bird2 {
-    0%{
-       left: 100%;
-        margin-top: 100px;
-    }
-
-    100%{
-        left: -10%;
-        margin-top: 300px;
-        width: 40px;
-        height: 40px;
-    }
-}
-
-@keyframes bird3 {
-    0%{
-        margin-left: -100px;
-        margin-top: 200px;
-    }
-
-    100%{
-        margin-left: 2000px;
-        margin-top: 700px;
-    }
-}
-
 .birds{
     width: 80px;
     height: 80px;
     display: block;
-    margin-left: -150px;
     position: absolute;
-}
-
-#first{
-    animation: bird1 7s infinite;
-    animation-delay: 3s;
-}
-
-#second{
-    animation: bird2 6s infinite ;
-    animation-delay: 7s;
-}
-
-#third{
-    animation: bird3 7s infinite ;
-    animation-delay: 14s;
+    left: -100px;
 }
 
 .bomb{

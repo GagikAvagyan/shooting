@@ -2,12 +2,57 @@ function playAudio(url) {
     new Audio(url).play();
 }
 
-let arr = ['first','second','third'];
-
-for (let i = 0; i < arr.length; i++){
-    $('.game_content').append(`<img src='./img/${i}.gif' id='${arr[i]}' class='birds'>`);
-    arr[i] + 1
+function makeid(length) {
+    let result           = '';
+    let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let charactersLength = characters.length;
+    for ( let i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() *
+            charactersLength));
+    }
+    return result;
 }
+
+
+
+let birdCount = 15;
+let birdStyle = (id) => {
+    const RandomTextAnimationName = makeid(10);
+    return `
+            <style>
+                @keyframes ${RandomTextAnimationName} {
+                    0%{
+                        top: ${parseInt(Math.random() * 2)}00px ;
+                    }
+                    
+                    40%{
+                        top: ${parseInt(Math.random() * 4)}00px ;
+                    }
+                    
+                    70%{
+                        top: ${parseInt(Math.random() * 6)}00px ;
+                    }
+                   
+                    100%{
+                        left: 100% ;
+                       top: ${parseInt(Math.random() * 7)}00px ;
+                    }
+                }
+                
+                #${id}{
+                     animation: ${RandomTextAnimationName} ${Math.ceil(Math.random() * 8)}s infinite;
+                     animation-delay: ${parseInt(Math.random() * 5)}s;
+                }
+            </style>
+        `
+}
+for (let i = 0; i < birdCount; i++){
+    const RandomText = makeid(10);
+    $('.game_content').append(`<img src="./img/${parseInt(Math.random() * 3)}.gif" id="${RandomText}" class="birds">`).append(birdStyle(RandomText));
+}
+
+
+
 
 function startGame(){
 
@@ -91,14 +136,3 @@ $('.game_content').mousemove(function (e){
     let pageY = (e.pageY * -1 / 10);
     $(this).css('background-position', pageX + 'px ' + pageY + 'px');
 })
-
-
-
-
-
-
-
-
-
-
-
