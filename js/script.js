@@ -1,5 +1,9 @@
+let audio = true
+
 function playAudio(url) {
-    new Audio(url).play();
+    if ( audio === true ){
+        new Audio(url).play();
+    }
 }
 
 function makeid(length) {
@@ -13,26 +17,17 @@ function makeid(length) {
     return result;
 }
 
-
-
 let birdCount = 15;
+
 let birdStyle = (id) => {
-    const RandomTextAnimationName = makeid(10);
+    const RandomTextAnimationName = makeid(15);
     return `
             <style>
                 @keyframes ${RandomTextAnimationName} {
                     0%{
-                        top: ${parseInt(Math.random() * 2)}00px ;
+                        top: ${parseInt(Math.random() * 7)}00px ;
                     }
-                    
-                    40%{
-                        top: ${parseInt(Math.random() * 4)}00px ;
-                    }
-                    
-                    70%{
-                        top: ${parseInt(Math.random() * 6)}00px ;
-                    }
-                   
+  
                     100%{
                         left: 100% ;
                        top: ${parseInt(Math.random() * 7)}00px ;
@@ -46,13 +41,11 @@ let birdStyle = (id) => {
             </style>
         `
 }
+
 for (let i = 0; i < birdCount; i++){
-    const RandomText = makeid(10);
+    const RandomText = makeid(15);
     $('.game_content').append(`<img src="./img/${parseInt(Math.random() * 3)}.gif" id="${RandomText}" class="birds">`).append(birdStyle(RandomText));
 }
-
-
-
 
 function startGame(){
 
@@ -83,7 +76,6 @@ function startGame(){
 
     })
 
-
     $('body').mousedown(function (e) {
         playAudio('./sound/jungal.mp3');
         let className = e.target.className;
@@ -104,35 +96,68 @@ function startGame(){
     });
 }
 
-
-
+let maxClick = 0;
 
 function addBullet(){   // add Bullets
     for (let i = 0; i < 10; i++){
         $('.bullet_num').append('<img src="./img/bullet.png" class="bullets">')
     }
-    clickNum = 0;
+    let clickNum = 0;
 
     $('body').mousedown(function (e) {
         $('.bullet_num img:last').remove();
         clickNum += 1;
+        maxClick += 1;
+        $('.bullet_numbers').text(maxClick)
+        if ( maxClick < 50 ){
+            if ( clickNum === 10 ){
+                clickNum = 0;
+                playAudio('./sound/gun-cocking.mp3');
+                $('body').off('mousedown');
+                $('img').off('mousedown');
 
-        if(clickNum === 10){
-            clickNum = 0;
-            playAudio('./sound/gun-cocking.mp3');
-            $('body').off('mousedown');
-            $('img').off('mousedown');
-
-            setTimeout(function (){
-                addBullet();
-                startGame()
-            },1200)
+                setTimeout(function (){
+                    addBullet();
+                    startGame()
+                },1200)
+            }
+            if ( maxClick > 39){
+                $('.bullet_numbers').css('color','red')
+            }
+        }else {
+            maxClick = 49;
         }
     });
 }
 
-$('.game_content').mousemove(function (e){
+$('.game_content').mousemove(function (e){ // move background
     let pageX = (e.pageX * -1 / 10);
     let pageY = (e.pageY * -1 / 10);
     $(this).css('background-position', pageX + 'px ' + pageY + 'px');
+})
+
+$('.bullet_num').mousedown(function (e){ // start move bullets block
+    $('body').mousemove(function (e){
+       $('.bullet_num').css({
+           left: e.clientX + 'px',
+           top: e.clientY + 'px'
+       });
+   });
+})
+
+$('.bullet_num').mouseup(function (){ // stop move bullets block
+    $('body').off('mousemove')
+});
+
+$('.audio-icon').click(function (){ // for audio icon adn sound
+    $('#audio-icon-add').toggleClass('fas fa-volume-up  fas fa-volume-mute');
+    if (audio === true){
+
+        audio = false;
+        $('#audio-icon-add').css('color','red')
+    }else {
+
+        audio = true;
+        $('#audio-icon-add').css('color','#000')
+    }
 })

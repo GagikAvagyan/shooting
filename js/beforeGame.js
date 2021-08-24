@@ -1,4 +1,4 @@
-let cel = "./img/cel1.png", clickNum , user;
+let cel = "./img/cel1.png", user;
 
 $('.chooseImg').click(function (){ // for background images
     let bg = $(this).attr('src',);
@@ -22,7 +22,6 @@ $('.StartGame').click(function (){ // start game button
     addBullet();
     $('body').css("cursor", `url('${cel}'),auto`);
 });
-
 
 $('.sign-up').click( function (){
     openSignInForm()
@@ -61,7 +60,3 @@ if (user === null ){
         }
     },2000)
 }
-
-
-
-
