@@ -11,13 +11,12 @@ function makeid(length) {
     let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let charactersLength = characters.length;
     for ( let i = 0; i < length; i++ ) {
-        result += characters.charAt(Math.floor(Math.random() *
-            charactersLength));
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
 }
 
-let birdCount = 15;
+let birdCount = 20;
 
 let birdStyle = (id) => {
     const RandomTextAnimationName = makeid(15);
@@ -76,7 +75,7 @@ function startGame(){
 
     })
 
-    $('body').mousedown(function (e) {
+    $('body').mousedown(function (e) { // for kill birds
         playAudio('./sound/jungal.mp3');
         let className = e.target.className;
 
@@ -109,23 +108,25 @@ function addBullet(){   // add Bullets
         clickNum += 1;
         maxClick += 1;
         $('.bullet_numbers').text(maxClick)
-        if ( maxClick < 50 ){
-            if ( clickNum === 10 ){
-                clickNum = 0;
-                playAudio('./sound/gun-cocking.mp3');
-                $('body').off('mousedown');
-                $('img').off('mousedown');
 
-                setTimeout(function (){
-                    addBullet();
-                    startGame()
-                },1200)
-            }
-            if ( maxClick > 39){
-                $('.bullet_numbers').css('color','red')
-            }
-        }else {
-            maxClick = 49;
+        if ( maxClick < 29  && clickNum === 10 ){
+
+            clickNum = 0;
+            playAudio('./sound/gun-cocking.mp3');
+            $('body').off('mousedown');
+            $('img').off('mousedown');
+
+            setTimeout(function (){
+                addBullet();
+                startGame()
+            },1200)
+
+            maxClick > 19 ?  $('.bullet_numbers').css('color','red') : '';
+
+        }else if (maxClick >= 30) {
+            $('body').off('mousedown');
+            $('img').off('mousedown');
+            gameFinished()
         }
     });
 }
@@ -152,12 +153,17 @@ $('.bullet_num').mouseup(function (){ // stop move bullets block
 $('.audio-icon').click(function (){ // for audio icon adn sound
     $('#audio-icon-add').toggleClass('fas fa-volume-up  fas fa-volume-mute');
     if (audio === true){
-
         audio = false;
         $('#audio-icon-add').css('color','red')
     }else {
-
         audio = true;
         $('#audio-icon-add').css('color','#000')
     }
 })
+
+function gameFinished(){
+    $('.game_content').hide();
+    $('.before_game').show();
+    $('body').css("cursor", 'default');
+}
+
