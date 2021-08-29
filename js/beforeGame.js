@@ -23,40 +23,53 @@ $('.StartGame').click(function (){ // start game button
     $('body').css("cursor", `url('${cel}'),auto`);
 });
 
-$('.sign-up').click( function (){
-    openSignInForm()
+
+
+
+
+
+$('.loginButton').click( function (){
+    openLoginForm()
 })
 
-$('.close-form').click(function (){
-    closeSignInForm()
-});
+$('.registerButton').click( function (){
+    openRegisterForm()
+})
 
-function openSignInForm(){
-    $('.before_game').css({
-        filter: 'blur(8px)',
-    });
-    $('.sign-up-form').show()
+function openLoginForm(){
+    $('.box1, .box2').hide()
+    $('.LoginRegisterButton').hide();
+    $('.before_game').css({ filter: 'blur(6px)' });
+    $('.login-form').show()
+}
+function openRegisterForm(){
+    $('.box1, .box2').hide()
+    $('.LoginRegisterButton').hide();
+    $('.before_game').css({ filter: 'blur(6px)' });
+    $('.register-section').show();
 }
 
-function closeSignInForm(){
+function closeLoginForm(){
+    $('.box1, .box2').show()
+    $('.before_game').css({ filter: 'blur(0px)' });
+    $('.login-form').hide()
+}
+
+function closeRegisterForm(){
+    $('.box1, .box2').show()
     $('.before_game').css({
         filter: 'blur(0px)',
     });
-    $('.sign-up-form').hide()
+    $('.register-section').hide();
 }
 
-$('.sign-up-button').click(function (){
-     user = $('.form-name').val() + ' ' +  $('.form-email').val()
-     localStorage.setItem("User", user);
-     closeSignInForm()
+$('.register-section').hide();
+$('.login-form').hide();
+
+$('body').click(function (e) {
+    if($(e.target).is('.box3')){
+        closeLoginForm()
+        closeRegisterForm()
+        $('.LoginRegisterButton').show();
+    }
 });
-
-user = localStorage.getItem('User');
-
-if (user === null ){
-    setTimeout(function (){
-        if($('.before_game').css('display') !== 'none'){
-            openSignInForm();
-        }
-    },2000)
-}

@@ -56,17 +56,63 @@
     </div>
 
     <div class="box3">
-        <button class="sign-up">Sign Up</button>
+
+        <div class="LoginRegisterButton">
+            <button class="loginButton sign-up">Login</button>
+            <button class="registerButton">Register</button>
+        </div>
+
     </div>
 
 </div>
 
-<form action="" class="sign-up-form">
-    <img src="./img/close.png" class="close-form">
-    <input type="text" name="FullName" class="form-name" placeholder="Full-Name">
-    <input type="email" name="Email" class="form-email" placeholder="Email">
-    <input type="button" name="Button" value="Sign Up" class="sign-up-button">
+
+
+<div class="login-form">
+    <div class="img-block">
+        <img src="./img/person.png" alt="Person">
+    </div>
+    <div class="form-block">
+        <h2>User Login</h2>
+        <form action="#">
+            <i class="fas fa-envelope form-icons-email"></i>
+            <input type="email" name="email" placeholder="Email Id">
+            <i class="fas fa-lock form-icons-pass"></i>
+            <input type="password" name="password" placeholder="Password">
+            <button>Login</button>
+        </form>
+        <a href="#">Forgot Username/Password</a>
+    </div>
+</div>
+
+
+<form action="#" class="register-section">
+    <h2>Registration Form</h2>
+
+    <div class="Email">
+        <label>Email</label>
+        <input type="text" name="Email">
+    </div>
+
+    <div class="UserName">
+        <label>UserName</label>
+        <input type="text" name="UserName">
+    </div>
+
+    <div class="Password">
+        <label>Password</label>
+        <input type="text" name="Password">
+    </div>
+
+    <div class="Agree">
+        <input type="checkbox" name="Agree" id="agree">
+        <label for="agree">I agree to the Terms of Service and Privacy Policy</label>
+    </div>
+
+    <button class="create">Create Account</button>
+    <button class="login">Login</button>
 </form>
+
 
 
 <div class="game_content">
