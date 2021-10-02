@@ -44,7 +44,6 @@ function addClick(){
             success: function (resp){
                 for(let i = 0; i <resp.length; i++){
                     if (resp[i].title == choosedSangtitle){
-                        alert('ok')
                         let sound = resp[i].folder_name;
                         let name = resp[i].name;
                         $('.audioBlock').empty();
