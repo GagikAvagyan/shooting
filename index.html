@@ -35,9 +35,9 @@
 
         <h3>Choose Level</h3>
         <div id="Level">Low Level</div>
-        <p class="option">Low Level</p>
-        <p class="option">Middle Level</p>
-        <p class="option">High Level</p>
+        <p class="option Low active">Low Level</p>
+        <p class="option Middle">Middle Level</p>
+        <p class="option High">High Level</p>
     </div>
 
     <div class="box2">
@@ -61,6 +61,19 @@
             <button class="loginButton sign-up">Login</button>
             <button class="registerButton">Register</button>
         </div>
+
+        <div class="audioBlock">
+            <audio controls class="sounde"> </audio>
+        </div>
+
+        <div class="searchMusic">
+            <input type="search" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." autocomplete="off">
+
+            <ul id="myUL">
+
+            </ul>
+        </div>
+
 
     </div>
 
@@ -133,6 +146,6 @@
 
 <script src="./js/script.js"></script>
 <script src="./js/beforeGame.js"></script>
-
+<script src="./js/ajax.js"></script>
 </body>
 </html>
