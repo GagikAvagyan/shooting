@@ -1,4 +1,6 @@
-let audio = true
+let audio = true;
+let defBirdCount = 15;
+let bulletNumber = 25;
 
 function playAudio(url) {
     if ( audio === true ){
@@ -16,11 +18,15 @@ function makeid(length) {
     return result;
 }
 
-let birdCount = 20;
 
-let birdStyle = (id) => {
-    const RandomTextAnimationName = makeid(15);
-    return `
+
+function startBirdCount(){
+
+    let birdCount = defBirdCount;
+
+    let birdStyle = (id) => {
+        const RandomTextAnimationName = makeid(15);
+        return `
             <style>
                 @keyframes ${RandomTextAnimationName} {
                     0%{
@@ -29,7 +35,7 @@ let birdStyle = (id) => {
   
                     100%{
                         left: 100% ;
-                       top: ${parseInt(Math.random() * 7)}00px ;
+                       top:  ${parseInt(Math.random() * 7)}00px  ;
                     }
                 }
                 
@@ -39,12 +45,15 @@ let birdStyle = (id) => {
                 }
             </style>
         `
+    }
+
+    for (let i = 0; i < birdCount; i++){
+        const RandomText = makeid(15);
+        $('.game_content').append(`<img src="./img/${parseInt(Math.random() * 3)}.gif" id="${RandomText}" class="birds">`).append(birdStyle(RandomText));
+    }
 }
 
-for (let i = 0; i < birdCount; i++){
-    const RandomText = makeid(15);
-    $('.game_content').append(`<img src="./img/${parseInt(Math.random() * 3)}.gif" id="${RandomText}" class="birds">`).append(birdStyle(RandomText));
-}
+
 
 function startGame(){
 
@@ -109,7 +118,9 @@ function addBullet(){   // add Bullets
         maxClick += 1;
         $('.bullet_numbers').text(maxClick)
 
-        if ( maxClick < 29  && clickNum === 10 ){
+        maxClick > bulletNumber -10 ?  $('.bullet_numbers').css('color','red') : '';
+
+        if ( maxClick < bulletNumber  && clickNum === 10 ){
 
             clickNum = 0;
             playAudio('./sound/gun-cocking.mp3');
@@ -121,9 +132,7 @@ function addBullet(){   // add Bullets
                 startGame()
             },1200)
 
-            maxClick > 19 ?  $('.bullet_numbers').css('color','red') : '';
-
-        }else if (maxClick >= 30) {
+        }else if (maxClick >= bulletNumber) {
             $('body').off('mousedown');
             $('img').off('mousedown');
             gameFinished()
@@ -166,4 +175,3 @@ function gameFinished(){
     $('.before_game').show();
     $('body').css("cursor", 'default');
 }
-

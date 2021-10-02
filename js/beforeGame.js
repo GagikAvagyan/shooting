@@ -14,6 +14,24 @@ $('.option').hide(); // for level
 $('#Level').click(function (){
     $('.option').toggle( "normal");
 });
+$('.option').click(function (){  // addActiveClass
+    $('.option').removeClass('active')
+    $(this).addClass('active')
+})
+$('.Low').click(function (){   //choose level
+    defBirdCount = 15;
+    bulletNumber = 25;
+});
+$('.Middle').click(function (){   //choose level
+    defBirdCount = 25;
+    bulletNumber = 45;
+});
+$('.High').click(function (){   //choose level
+    defBirdCount = 40;
+    bulletNumber = 55;
+});
+
+
 
 $('.StartGame').click(function (){ // start game button
     $('.game_content').show();
@@ -21,11 +39,8 @@ $('.StartGame').click(function (){ // start game button
     startGame();
     addBullet();
     $('body').css("cursor", `url('${cel}'),auto`);
+    startBirdCount()
 });
-
-
-
-
 
 
 $('.loginButton').click( function (){
