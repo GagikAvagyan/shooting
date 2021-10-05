@@ -8,6 +8,7 @@ function playAudio(url) {
     }
 }
 
+
 function makeid(length) {
     let result           = '';
     let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -93,6 +94,7 @@ function startGame(){
             $('.birds').mousedown(function (){
                 $(this).attr("src", "./img/kill.gif");
                 $(this).css("animation-play-state", "paused");
+                $(this).remove();
                 setTimeout(() => {
                     $(this).css('display', 'none');
                 },2000)
@@ -107,18 +109,19 @@ function startGame(){
 let maxClick = 0;
 
 function addBullet(){   // add Bullets
-    for (let i = 0; i < 10; i++){
+
+    for (let i = 0; i < 10; i++){ // add Bullets images
         $('.bullet_num').append('<img src="./img/bullet.png" class="bullets">')
     }
-    let clickNum = 0;
 
+    let clickNum = 0;
     $('body').mousedown(function (e) {
         $('.bullet_num img:last').remove();
         clickNum += 1;
         maxClick += 1;
         $('.bullet_numbers').text(maxClick)
 
-        maxClick > bulletNumber -10 ?  $('.bullet_numbers').css('color','red') : '';
+        changeBulletColor()
 
         if ( maxClick < bulletNumber  && clickNum === 10 ){
 
@@ -140,7 +143,11 @@ function addBullet(){   // add Bullets
     });
 }
 
-$('.game_content').mousemove(function (e){ // move background
+function changeBulletColor(){ // for change bullet color
+    maxClick > bulletNumber -10 ?  $('.bullet_numbers').css('color','red') : $('.bullet_numbers').css('color','black') ;
+}
+
+$('.game_content').mousemove(function (e){ // move page background
     let pageX = (e.pageX * -1 / 10);
     let pageY = (e.pageY * -1 / 10);
     $(this).css('background-position', pageX + 'px ' + pageY + 'px');
@@ -159,7 +166,7 @@ $('.bullet_num').mouseup(function (){ // stop move bullets block
     $('body').off('mousemove')
 });
 
-$('.audio-icon').click(function (){ // for audio icon adn sound
+$('.audio-icon').click(function (){ // for audio icon and sound
     $('#audio-icon-add').toggleClass('fas fa-volume-up  fas fa-volume-mute');
     if (audio === true){
         audio = false;
@@ -170,8 +177,26 @@ $('.audio-icon').click(function (){ // for audio icon adn sound
     }
 })
 
-function gameFinished(){
-    $('.game_content').hide();
-    $('.before_game').show();
+
+$('.afterGame').hide();
+$('.afterGameCover').hide()
+
+function gameFinished(){ // for finish game-
+    maxClick = 0;
+    changeBulletColor();
+    $('.bullet_numbers').text(0);
+    $('.bullet_num img').remove();
+    $('.afterGameCover').show();
+    $('.afterGame').show();
     $('body').css("cursor", 'default');
+    $('.game_content').css({ filter: 'blur(4px)' });
 }
+
+$('.playAgain').click(function (){
+    $('.birds').remove()
+    $('.game_content style').remove()
+    startGameFunc()
+    $('.afterGame').hide();
+    $('.afterGameCover').hide()
+    $('.game_content').css({ filter: 'blur(0px)' });
+})
